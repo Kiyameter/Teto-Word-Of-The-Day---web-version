@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Teto Text to Speech</title>
+  <link rel="icon" href="twotd.jpg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <h1>Teto Text to Speech</h1>
+      <img id="mascot" src="teto-stupid.gif" alt="Teto mascot">
+    </header>
+
+    <label class="label" for="textInput">Text</label>
+    <div class="box">
+      <textarea id="textInput" rows="5" spellcheck="true"></textarea>
+    </div>
+    <div class="hints">
+      <span id="spellHint">Spellcheck: right-click underlined words for fixes</span>
+      <button type="button" id="tagBtn" class="link-btn">Ctrl + Space: voice tags</button>
+    </div>
+
+    <div class="file-row">
+      <label class="label" for="filenameInput">Save as</label>
+      <input id="filenameInput" type="text" autocomplete="off">
+      <button id="generateBtn" class="primary">Generate</button>
+    </div>
+
+    <div class="label">Audio files</div>
+    <div class="box list-box">
+      <table id="audioTable">
+        <thead><tr><th>File</th><th class="size">Size</th></tr></thead>
+        <tbody id="audioList"></tbody>
+      </table>
+      <div id="emptyMsg" class="empty" hidden>No audio files yet. Generate one to get started.</div>
+    </div>
+
+    <div class="footer">
+      <button id="playBtn" class="action">Play</button>
+      <button id="renameBtn" class="action">Rename</button>
+      <button id="deleteBtn" class="action danger">Delete</button>
+      <button id="downloadBtn" class="action">Download</button>
+      <button id="refreshBtn" class="action">Refresh</button>
+    </div>
+    <div id="status" class="status">Ready</div>
+  </main>
+
+  <!-- Context menu -->
+  <ul id="ctxMenu" class="ctx" hidden>
+    <li data-act="play">Play</li>
+    <li class="sep"></li>
+    <li data-act="rename">Rename</li>
+    <li data-act="download">Download</li>
+    <li data-act="delete">Delete</li>
+  </ul>
+
+  <!-- Tag picker -->
+  <div id="tagModal" class="modal" hidden>
+    <div class="dialog">
+      <h2>Choose a voice tag</h2>
+      <div id="tagTabs" class="tabs"></div>
+      <div id="tagGrid" class="tag-grid"></div>
+      <div class="dialog-actions"><button id="tagClose" class="action">Close</button></div>
+    </div>
+  </div>
+
+  <!-- Rename dialog -->
+  <div id="renameModal" class="modal" hidden>
+    <div class="dialog small">
+      <h2>Rename audio</h2>
+      <input id="renameInput" type="text" autocomplete="off">
+      <div class="dialog-actions">
+        <button id="renameCancel" class="action">Cancel</button>
+        <button id="renameOk" class="primary">Rename</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="player" hidden></audio>
+  <script src="script.js"></script>
+</body>
+</html>

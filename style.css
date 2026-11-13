@@ -1,0 +1,134 @@
+* { box-sizing: border-box; }
+
+html, body { height: 100%; margin: 0; }
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #f7f4fb url("twotd.jpg") center / cover fixed no-repeat;
+  color: #29243a;
+}
+
+.app {
+  max-width: 900px;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 14px 22px 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.header h1 { margin: 0; font-size: 16pt; color: #44345f; }
+#mascot { width: 82px; height: 82px; object-fit: contain; }
+
+.label { font-size: 9pt; font-weight: bold; color: #51446e; margin: 5px 2px 4px; }
+
+.box {
+  background: #fff;
+  border: 1px solid #cbbce0;
+}
+
+textarea, input[type="text"] {
+  font-family: inherit;
+  color: #29243a;
+  caret-color: #7652b5;
+}
+textarea::selection, input::selection { background: #d9c9f1; }
+
+textarea {
+  display: block;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  resize: vertical;
+  padding: 9px 11px;
+  font-size: 11pt;
+  line-height: 1.4;
+  background: transparent;
+}
+
+.hints {
+  display: flex; justify-content: space-between; align-items: center;
+  margin: 7px 2px 12px; font-size: 8pt; color: #685879;
+}
+.link-btn {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font: bold 8pt "Segoe UI", sans-serif; color: #7652b5;
+}
+
+.file-row { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; }
+.file-row .label { margin: 0; }
+.file-row input {
+  flex: 1; padding: 7px 9px; font-size: 10pt;
+  background: #fff; border: 1px solid #cbbce0; outline: 0;
+}
+.file-row input:focus { border-color: #9b7bd0; }
+
+button { font-family: inherit; cursor: pointer; border: 0; }
+button:disabled { opacity: .6; cursor: default; }
+
+.primary {
+  background: #7652b5; color: #fff; padding: 8px 17px;
+  font-size: 9pt; font-weight: bold;
+}
+.primary:hover:not(:disabled) { background: #64439c; }
+
+.action {
+  background: #eee8f8; color: #51446e; padding: 8px 18px;
+  font-size: 9pt; font-weight: bold;
+}
+.action:hover { background: #ded2f5; }
+.action.danger { background: #fff0f0; color: #a24652; }
+.action.danger:hover { background: #fbdede; }
+
+.list-box { flex: 1; min-height: 140px; max-height: 40vh; overflow-y: auto; margin-bottom: 8px; position: relative; }
+table { width: 100%; border-collapse: collapse; font-size: 10pt; }
+th {
+  position: sticky; top: 0; background: #e9e1f3; color: #51446e;
+  font-weight: 600; text-align: left; padding: 5px 8px;
+}
+td { padding: 4px 8px; height: 25px; background: #fffaff; user-select: none; }
+th.size, td.size { text-align: right; width: 90px; }
+tr.row { cursor: default; }
+tr.row.selected td { background: #ded2f5; }
+.empty { padding: 14px; color: #685879; font-size: 9pt; }
+
+.footer { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+.status { font-size: 8pt; color: #51446e; padding: 0 2px 8px; }
+
+/* Context menu */
+.ctx {
+  position: fixed; z-index: 50; margin: 0; padding: 4px 0; list-style: none;
+  background: #fff; border: 1px solid #cbbce0; box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  min-width: 140px; font-size: 10pt;
+}
+.ctx li { padding: 6px 16px; cursor: pointer; }
+.ctx li:hover { background: #ded2f5; }
+.ctx li.sep { padding: 0; margin: 4px 0; border-top: 1px solid #e3daf0; cursor: default; }
+.ctx li.sep:hover { background: none; }
+
+/* Modals */
+.modal {
+  position: fixed; inset: 0; z-index: 100; display: flex;
+  align-items: center; justify-content: center; background: rgba(40, 30, 60, .35);
+}
+.modal[hidden], .ctx[hidden], .empty[hidden] { display: none; }
+.dialog {
+  background: #f7f4fb; padding: 14px 16px; width: min(440px, 92vw);
+  box-shadow: 0 8px 30px rgba(0,0,0,.3);
+}
+.dialog.small { width: min(360px, 92vw); }
+.dialog h2 { margin: 0 0 10px; font-size: 12pt; color: #44345f; }
+.dialog input { width: 100%; padding: 7px 9px; font-size: 10pt; border: 1px solid #cbbce0; outline: 0; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 12px; }
+
+.tabs { display: flex; gap: 2px; margin-bottom: 8px; }
+.tab { background: #e9e1f3; color: #51446e; padding: 6px 12px; font-size: 9pt; }
+.tab.active { background: #fff; font-weight: bold; }
+.tag-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; background: #fff; padding: 10px; }
+.tag-btn { background: #eee8f8; color: #51446e; padding: 6px 8px; font-size: 9pt; }
+.tag-btn:hover { background: #ded2f5; }
+
+@media (max-width: 560px) {
+  .footer .action { flex: 1 1 30%; padding: 8px 6px; }
+}
